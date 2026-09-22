@@ -16,12 +16,7 @@ type HomeData struct {
 	Projects []models.Project
 }
 
-func (h *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
-	if r.URL.Path != "/" {
-		http.NotFound(w, r)
-		return
-	}
-
+func (h *HomeHandler) Handle(w http.ResponseWriter, r *http.Request) {
 	projects := []models.Project{
 		{
 			Name:        "Project One",
@@ -39,8 +34,7 @@ func (h *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		Projects: projects,
 	}
 
-	err := h.Templates.ExecuteTemplate(w, "layout", data)
-	if err != nil {
+	if err := h.Templates.ExecuteTemplate(w, "home", data); err != nil {
 		http.Error(w, "Internal Server Error", http.StatusInternalServerError)
 	}
 }

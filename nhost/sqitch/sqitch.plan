@@ -1,0 +1,5 @@
+%syntax-version=1.0.0
+%project=metzark.com
+
+schemas/url_extender 2026-09-22T18:02:03Z ,,, <metzark@MetzarkPC> # Adding url_extender schema
+tables/urls 2026-09-22T18:06:16Z ,,, <metzark@MetzarkPC> # Adding url_extender.urls table

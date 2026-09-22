@@ -14,3 +14,4 @@
 - "!include storage_buckets.yaml"
 - "!include storage_files.yaml"
 - "!include storage_virus.yaml"
+- "!include url_extender_urls.yaml"

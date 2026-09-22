@@ -1,14 +1,40 @@
-{{ define "content" }}
+{{ define "home" }}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
+    <title>{{ .Title }}</title>
+    <link rel="icon" type="image/jpeg" href="/static/img/icon.jpg" />
+    <link rel="stylesheet" href="/static/css/global.css" />
+    <link rel="stylesheet" href="/static/css/home.css" />
+  </head>
+
+  <body>
+    <div class="background">
+      <div class="grid"></div>
+    </div>
+
+    {{ template "nav" . }}
+
+    <main>{{ template "home-content" . }}</main>
+
+    {{ template "footer" . }}
+
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>
+{{ end }} {{ define "home-content" }}
 <section class="hero container" id="about">
   <div class="eyebrow">
     <span class="eyebrow-dot"></span>
     Personal playground
   </div>
 
-  <h1>Metzark<span class="title-dot">.</span></h1>
+  <h1>Metzark</h1>
 
-  <p class="hero-description">A collection of projects, experiments, tools, and other things I've built along the way.</p>
+  <p class="hero-description">A collection of projects, experiments, tools, and other things I've built or and building.</p>
 
   <div class="hero-actions">
     <a class="button button-primary" href="#projects"> View projects </a>
@@ -28,5 +54,4 @@
 
   <div class="projects">{{ range .Projects }} {{ template "project-card" . }} {{ end }}</div>
 </section>
-
 {{ end }}

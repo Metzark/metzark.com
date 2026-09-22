@@ -1,0 +1,69 @@
+{{ define "url-extender" }}
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>{{ .Title }}</title>
+    <link rel="icon" type="image/jpeg" href="/static/img/icon.jpg" />
+    <link rel="stylesheet" href="/static/css/global.css" />
+    <link rel="stylesheet" href="/static/css/url-extender.css" />
+  </head>
+
+  <body>
+    <div class="background">
+      <div class="grid"></div>
+    </div>
+
+    {{ template "nav" . }}
+
+    <main>{{ template "url-extender-content" . }}</main>
+
+    {{ template "footer" . }}
+
+    <script src="/static/js/main.js"></script>
+  </body>
+</html>
+{{ end }} {{ define "url-extender-content" }}
+<section class="url-extender-page container">
+  <div class="url-extender-card">
+    <div class="eyebrow">
+      <span class="eyebrow-dot"></span>
+      URL Extender
+    </div>
+
+    <h1>
+      Make your URL<br />
+      <span>way too long.</span>
+    </h1>
+
+    <p class="url-extender-description">Because apparently a normal URL wasn't complicated enough.</p>
+
+    <form method="POST" action="/url_extender">
+      <div class="url-field">
+        <div class="url-input-row">
+          <input id="actual" name="actual" type="url" placeholder="https://example.com" required />
+
+          <button type="submit" class="button button-primary">Ruin it →</button>
+        </div>
+      </div>
+      <div class="url-options">
+        <label class="checkbox-option">
+          <input type="checkbox" name="require_check" value="true" />
+          <span class="checkbox-box"></span>
+          <span class="checkbox-text">
+            <strong>Require check</strong>
+            <small> Make the user confirm before redirecting. </small>
+          </span>
+        </label>
+        <div class="expiration-option">
+          <label class="form-label" for="expires_at"> Expiration date </label>
+          <input id="expires_at" name="expires_at" type="datetime-local" />
+          <small> Leave blank to expire after 24 hours. </small>
+        </div>
+      </div>
+    </form>
+  </div>
+</section>
+{{ end }}

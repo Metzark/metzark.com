@@ -1,0 +1,223 @@
+:root {
+  --black: #2d3436;
+  --dark-grey: #636e72;
+  --light-grey: #b2bec3;
+  --white: #dfe6e9;
+
+  --red: #d63031;
+  --light-red: #ff7675;
+
+  --orange: #e17055;
+  --light-orange: #fab1a0;
+
+  --yellow: #fdcb6e;
+  --light-yellow: #ffeaa7;
+
+  --green: #00b894;
+  --light-green: #55efc4;
+
+  --teal: #00cec9;
+  --light-teal: #81ecec;
+
+  --blue: #0984e3;
+  --light-blue: #74b9ff;
+
+  --purple: #6c5ce7;
+  --light-purple: #a29bfe;
+
+  --pink: #e84393;
+  --light-pink: #fd79a8;
+}
+
+/* =========================================================
+   Base
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--black);
+  color: var(--white);
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+}
+
+/* =========================================================
+   Background
+   ========================================================= */
+
+.background {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.background::before {
+  content: "";
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  top: -350px;
+  right: -250px;
+  background: var(--blue);
+  opacity: 0.08;
+  filter: blur(120px);
+  border-radius: 50%;
+}
+
+.background::after {
+  content: "";
+  position: absolute;
+  width: 600px;
+  height: 600px;
+  bottom: -350px;
+  left: -250px;
+  background: var(--blue);
+  opacity: 0.07;
+  filter: blur(120px);
+  border-radius: 50%;
+}
+
+.grid {
+  position: absolute;
+  inset: 0;
+  opacity: 0.035;
+  background-image: linear-gradient(var(--white) 1px, transparent 1px), linear-gradient(90deg, var(--white) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: linear-gradient(to bottom, black 0%, transparent 80%);
+}
+
+/* =========================================================
+   Layout
+   ========================================================= */
+
+.container {
+  width: min(1100px, calc(100% - 40px));
+  margin: 0 auto;
+}
+
+/* =========================================================
+   Navigation
+   ========================================================= */
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 28px 0;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+}
+
+.logo-mark {
+  width: 10px;
+  height: 10px;
+  background: var(--blue);
+  border-radius: 50%;
+  box-shadow: 0 0 18px var(--blue);
+}
+
+.nav-links {
+  display: flex;
+  gap: 24px;
+  color: var(--light-grey);
+  font-size: 0.9rem;
+}
+
+.nav-links a {
+  transition:
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.nav-links a:hover {
+  color: var(--white);
+  transform: translateY(-1px);
+}
+
+/* =========================================================
+   Footer
+   ========================================================= */
+
+footer {
+  padding: 30px 0 50px;
+  border-top: 1px solid rgba(223, 230, 233, 0.06);
+  color: var(--dark-grey);
+  font-size: 0.8rem;
+}
+
+footer .container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+/* =========================================================
+   Accessibility / Motion
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* =========================================================
+   Global Mobile
+   ========================================================= */
+
+@media (max-width: 700px) {
+  .container {
+    width: min(100% - 28px, 1100px);
+  }
+
+  nav {
+    padding: 20px 0;
+  }
+
+  .nav-links {
+    display: none;
+  }
+
+  footer .container {
+    flex-direction: column;
+  }
+}

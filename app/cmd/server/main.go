@@ -12,10 +12,11 @@ func main() {
 	templates := template.Must(
 		template.ParseFiles(
 			"internal/templates/layout.html",
-			"internal/templates/home.html",
 			"internal/templates/components/nav.html",
 			"internal/templates/components/project-card.html",
 			"internal/templates/components/footer.html",
+			"internal/templates/home.html",
+			"internal/templates/url-extender.html",
 		),
 	)
 
@@ -23,7 +24,7 @@ func main() {
 
 	// Static files
 	mux.Handle(
-		"/static/",
+		"GET /static/",
 		http.StripPrefix(
 			"/static/",
 			http.FileServer(http.Dir("./web/static")),
@@ -35,11 +36,17 @@ func main() {
 		Templates: templates,
 	}
 
-	mux.Handle("/", homeHandler)
+	urlExtenderHandler := &handlers.UrlExtenderHandler{
+    	Templates: templates,
+	}
 
-	log.Println("server listening on http://localhost:8080")
+	mux.HandleFunc("GET /", homeHandler.Handle)
+	mux.HandleFunc("GET /url_extender", urlExtenderHandler.Handle)
+	mux.HandleFunc("POST /url_extender", urlExtenderHandler.Handle)
 
-	if err := http.ListenAndServe(":8080", mux); err != nil {
+	log.Println("server listening on http://localhost:3000")
+
+	if err := http.ListenAndServe(":3000", mux); err != nil {
 		log.Fatal(err)
 	}
 }
