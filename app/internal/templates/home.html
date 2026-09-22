@@ -1,0 +1,32 @@
+{{ define "content" }}
+
+<section class="hero container" id="about">
+  <div class="eyebrow">
+    <span class="eyebrow-dot"></span>
+    Personal playground
+  </div>
+
+  <h1>Metzark<span class="title-dot">.</span></h1>
+
+  <p class="hero-description">A collection of projects, experiments, tools, and other things I've built along the way.</p>
+
+  <div class="hero-actions">
+    <a class="button button-primary" href="#projects"> View projects </a>
+
+    <a class="button button-secondary" href="https://github.com/Metzark"> GitHub ↗ </a>
+  </div>
+</section>
+
+<section class="section container" id="projects">
+  <div class="section-heading">
+    <div>
+      <h2 class="section-title">Projects</h2>
+
+      <p class="section-description">Things I'm building, maintaining, or messing around with.</p>
+    </div>
+  </div>
+
+  <div class="projects">{{ range .Projects }} {{ template "project-card" . }} {{ end }}</div>
+</section>
+
+{{ end }}

@@ -1,0 +1,25 @@
+{{ define "project-card" }}
+<a class="project" href="{{ .URL }}" style="--accent: {{ .Color }}">
+  <div>
+    <div class="project-top">
+      <div class="project-icon">{{ .Icon }}</div>
+
+      <span class="project-status"> {{ .Status }} </span>
+    </div>
+
+    <h3>{{ .Name }}</h3>
+
+    <p>{{ .Description }}</p>
+  </div>
+
+  <div class="project-bottom">
+    <div class="tags">
+      {{ range .Tags }}
+      <span class="tag">{{ . }}</span>
+      {{ end }}
+    </div>
+
+    <span class="project-link"> View <span>→</span> </span>
+  </div>
+</a>
+{{ end }}
